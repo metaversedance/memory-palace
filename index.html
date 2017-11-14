@@ -43,88 +43,75 @@
         <a-text id="tree" font="kelsonsans" value="arbre" width="10" position="-1 4 10" rotation="0 -90 0"></a-text>
 
 
-        <a-entity id="tower-entity" position="2.253 -0.35 -64.212" gltf-model="#eiffel-tower-model">
+        <a-entity id="tower-entity" position="-1.2 -0.35 9.76" gltf-model="#eiffel-tower-model">
+        </a-entity>
+
 
         <a-entity id="tower-text" geometry="primitive:plane" material="color:blue" text="align:center;value:Tower;width:10" position="3.735 5.367 24.734">
-        </a-entity>
-            
-
-        <a-text id="tower" font="kelsonsans" value="la tour" width="10" position="0 3 0" rotation="0 90 0"></a-text>
         </a-entity>
 
 
 
         <a-entity position="1 0 1">
-            <a-sphere class="link" material="opacity:.7" mixin="enlarge-on-focus opacity-on-focus" checkpoint="offset:0 1.6 0" radius="1" position="4.711 1.5 33.229" color="#d31b2d">
+            <a-sphere class="link" material="opacity:0.7" mixin="enlarge-on-focus opacity-on-focus" checkpoint="offset:0 1.6 0" radius="1" position="1.052 1.5 37.979" color="#d31b2d" mixin="enlarge-on-focus opacity-on-focus">
             </a-sphere>
 
-            <a-sphere class="link" material="opacity:.7" mixin="enlarge-on-focus opacity-on-focus" checkpoint="offset:0 1.6 0" radius="1" position="-9.616 1.5 23.638" color="#d31b2d">
+            <a-sphere class="link" material="opacity:0.7" mixin="enlarge-on-focus opacity-on-focus" checkpoint="offset:0 1.6 0" radius="1" position="-4.12 1.5 30.766" color="#d31b2d" mixin="enlarge-on-focus opacity-on-focus">
             </a-sphere>
 
-            <a-sphere class="link" material="opacity:.7" mixin="enlarge-on-focus opacity-on-focus" checkpoint="offset:0 1.6 0" radius="1" position="3.743 1.5 13.351" color="#d31b2d">
+
+            <a-sphere class="link" material="opacity:.7" mixin="enlarge-on-focus opacity-on-focus" checkpoint="offset:0 1.6 0" radius="1" position="-2.979 1.5 23.252" color="#d31b2d">
             </a-sphere>
             
-            <a-sphere class="link" material="opacity:.7" mixin="enlarge-on-focus opacity-on-focus" checkpoint="offset:0 1.6 0" radius="1" position="-11.841 1.5 5.21" color="#d31b2d">
+            <a-sphere class="link" material="opacity:.7" mixin="enlarge-on-focus opacity-on-focus" checkpoint="offset:0 1.6 0" radius="1" position="1.228 1.5 14.04" color="#d31b2d">
             </a-sphere>
 
-            <a-sphere class="link" material="opacity:.7" mixin="enlarge-on-focus opacity-on-focus" checkpoint="offset:0 1.6 0" radius="1" position="1.942 1.5 -4.399" color="#d31b2d">
-            </a-sphere>
-
-            <a-sphere class="link" material="opacity:.7" mixin="enlarge-on-focus opacity-on-focus" checkpoint="offset:0 1.6 0" radius="1" position="-10.164 1.5 -12.146" color="#d31b2d">
-            </a-sphere>
-
-            <a-sphere class="link" material="opacity:.7" mixin="enlarge-on-focus opacity-on-focus" checkpoint="offset:0 1.6 0" radius="1" position="5.606 1.5 -21.038" color="#d31b2d">
-            </a-sphere>
-
-            <a-sphere class="link" material="opacity:.7" mixin="enlarge-on-focus opacity-on-focus" checkpoint="offset:0 1.6 0" radius="1" position="-8.444 1.5 -28.714" color="#d31b2d">
-            </a-sphere>
-
-
-            <a-sphere class="link" material="opacity:.7" mixin="enlarge-on-focus opacity-on-focus" checkpoint="offset:0 1.6 0" radius="1" position="4.275 1.5 -38.828" color="#d31b2d">
+            <a-sphere class="link" material="opacity:.7" mixin="enlarge-on-focus opacity-on-focus" checkpoint="offset:0 1.6 0" radius="1" position="-5.753 1.5 2.41" color="#d31b2d">
             </a-sphere>
         </a-entity>
 
-        <a-entity id="shoe-entity" obj-model="mtl:models/sneakers/Sneakers.mtl;obj:models/sneakers/Sneakers.obj" scale="0.01 0.01 0.01" position="3.415 0 -9.283" rotation="0 300 0"></a-entity>
+        <a-entity id="shoe-entity" obj-model="mtl:models/sneakers/Sneakers.mtl;obj:models/sneakers/Sneakers.obj" scale="0.01 0.01 0.01" position="-1.823 0 19.587" rotation="0 300 0"></a-entity>
 
 
        <a-entity id="shoe-text" geometry="primitive:plane" material="color:blue" text="align:center;value:Shoe;width:10" position="3.415 2.6 -9.283">
         </a-entity>
 
-        <a-plane rotation="-90 0 0" width="100" height="100" material="src:textures/path2.png"></a-plane>
-        <a-entity id="tree-entity" material="src:models/ElmTree_BaseColor.png" obj-model="obj:models/ElmTree.OBJ" position="10.54 0 28.074" rotation="0 44.977 0">
-            <a-entity id="tree-text" geometry="primitive:plane;height:1;width:1" material="color:blue" text="value:Tree;width:10;align:center" position="-1.336 2.338 0.206" rotation="0 -90 0">
-            </a-entity>
+        <a-plane rotation="-90 0 0" width="100" height="100" material="src:textures/grass.jpg; repeat:10 10"></a-plane>
+        <a-entity id="tree-entity" material="src:textures/ElmTree_BaseColor.jpg" obj-model="obj:models/ElmTree.OBJ" position="10.54 0 28.074" rotation="0 44.977 0">
         </a-entity>
 
-        <a-entity id="car-entity" gltf-model="#car-model" position="4.112 0 6.987" rotation="0 45 0"></a-entity>
-        <a-entity id="car-text" geometry="primitive:plane" material="color:blue" text="align:center;value:Car;width:10" position="2.621 2.413 10.091">
+        <a-entity id="tree-text" geometry="primitive:plane" material="color:blue" text="align:center;value:Tree;width:10" position="10.257 2.516 29.128" rotation="0 -34.66394660541481 0">
         </a-entity>
 
-
-        <a-entity id="bike-entity" gltf-model="models/bike.glb" position="-10.866 0.373 -0.01" rotation="0 90 0"></a-entity>
+       <a-entity id="car-entity" gltf-model="#car-model" position="3.338 0 8.303" rotation="0 45 0"></a-entity>
         
-        <a-entity id="bike-text" geometry="primitive:plane" material="color:blue" text="align:center;value:Bike;width:10" position="-9.571 2.405 -0.01">
+        <a-entity id="car-text" geometry="primitive:plane" material="color:blue" text="align:center;value:Car;width:10" position="2.017 2.413 10.091">
         </a-entity>
 
-        <a-entity id="cloud-entity" gltf-model="models/cloud.glb" position="-8.186 3.441 -33.346" scale="3 3 3"></a-entity>
+
+        <a-entity id="bike-entity" gltf-model="models/bike.glb" position="-9.161 0.373 25.868" rotation="0 127.19663051904277 0"></a-entity>
+        
+        <a-entity id="bike-text" geometry="primitive:plane" material="color:blue" text="align:center;value:Bike;width:10" position="-8.638 2.755 25.868" rotation="0 45.26366581533504 0">
+        </a-entity>
+
+        <a-entity id="cloud-entity" gltf-model="models/cloud.glb" position="-5.522 3.441 -7.309" scale="3 3 3"></a-entity>
 
 
         <a-entity id="cloud-text" geometry="primitive:plane" material="color:blue" text="align:center;value:Cloud;width:10" position="-7.852 3.441 -32.02">
         </a-entity>
 
-        <a-entity id="dog-entity" scale="0.1 0.1 0.1" obj-model="mtl:models/dog/Dog.mtl;obj:models/dog/Dog.obj" position="-9.119 0 15.377" rotation="0 200 0">
+        <a-entity id="dog-entity" scale="0.1 0.1 0.1" obj-model="mtl:models/dog/Dog.mtl;obj:models/dog/Dog.obj" position="7.584 0 27.834" rotation="0 90 0">
         </a-entity>
 
-        <a-entity id="dog-text" geometry="primitive:plane" material="color:blue" text="align:center;value:Dog;width:10" position="-8.799 2.413 15.793">
+        <a-entity id="dog-text" geometry="primitive:plane" material="color:blue" text="align:center;value:Dog;width:10" position="7.325 2.863 29.753">
         </a-entity>
 
 
-
-        <a-entity id="frame-entity" gltf-model="models/frame.glb" position="5.426 3.688 -27.737" rotation="0 -90 0"></a-entity>
+<!--         <a-entity id="frame-entity" gltf-model="models/frame.glb" position="5.426 3.688 -27.737" rotation="0 -90 0"></a-entity>
 
         <a-entity id="frame-text" geometry="primitive:plane" material="color:blue" text="align:center;value:Frame;width:10" position="5.482 3.091 -26.62">
-        </a-entity>
-        <a-entity id="shirt-entity" gltf-model="models/shirt.glb" position="-6.634 2.921 -16.356" scale="3.5 3.5 3.5"></a-entity>
+        </a-entity> -->
+        <a-entity id="shirt-entity" gltf-model="models/shirt.glb" position="-1.529 2.839 18.363" scale="3.5 3.5 3.5"></a-entity>
 
         <a-entity id="shirt-text" geometry="primitive:plane" material="color:blue" text="align:center;value:Shirt;width:10" position="-6.354 4.442 -15.924">
         </a-entity>
@@ -141,6 +128,20 @@
 
 
     <a-box id="keyboard" keyboard="receiver: receiver; visibility: true;" color="#0288D1" height="1.1" width="1.1" position="0 1.6 -2.224" rotation="0 0 0"> -->
+
+<a-entity id="path">
+    <a-entity position="1.651 0.1 43.104" rotation="-90.01166961505233 -15.469860468532229 0" scale="1.682 15.12 1" geometry="height:0.85;width:1.97;primitive:plane" material="color:#fcff5a"></a-entity>
+    
+    <a-entity position="-0.051 0.1 34.565" rotation="-90.01166961505233 36.09634109324186 0" scale="1.682 15.12 1" geometry="height:0.6199999999999999;width:1.97;primitive:plane" material="color:#fcff5a"></a-entity>
+    <a-entity position="-2.087 0.1 28.03" rotation="-90.01166961505233 -11.000789666511807 0" scale="1.682 15.12 1" geometry="height:0.5199999999999998;width:1.97;primitive:plane" material="color:#fcff5a"></a-entity>
+
+    <a-entity position="0.405 0.1 19.831" rotation="-90.01166961505233 -21.886987773997447 0" scale="1.682 15.12 1" geometry="primitive:plane;height:0.71;width:1.97" material="color:#fcff5a"></a-entity>
+
+    <a-entity position="-1.504 0.1 9.664" rotation="-90.01166961505233 24.522593631599232 0" scale="1.682 15.12 1" geometry="height:1.1;primitive:plane;width:1.97" material="color:#fcff5a"></a-entity>
+
+    <a-entity position="-5.319 0.1 -2.98" rotation="-90.01166961505233 6.818197762056796 0" scale="1.682 15.12 1" geometry="height:0.9300000000000002;primitive:plane;width:1.97" material="color:#fcff5a"></a-entity>
+
+</a-entity>
 
     </a-scene>
 </body>
