@@ -5,6 +5,7 @@
     <title>Learn French in Paris- A-Frame</title>
     <meta name="description" content="Hello, WebVR! - A-Frame">
     <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
 
     <!--  <script src="js/aframe.js"></script>
  -->
@@ -21,7 +22,12 @@
             <!--         <img id="paris" src="https://cdn.glitch.com/77b325b3-a37f-455d-a8cc-6d6f614c1aa8%2Fparis.jpg?1509055622250"> -->
             <a-asset-item id="eiffel-tower-model" src="models/tower.glb"></a-asset-item>
             <a-mixin id="enlarge-on-focus" event-set__1="_event: mouseenter; scale: 1.2 1.2 1.2" event-set__2="_event: mouseleave; scale: 1 1 1"></a-mixin>
+            <a-mixin id="green-on-focus" event-set__1="_event: mouseenter; material.color:green" event-set__2="_event: mouseleave; material.color:#d31b2d"></a-mixin>
+
             <a-mixin id="opacity-on-focus" event-set__1="_event: mouseenter; material.opacity:1" event-set__2="_event: mouseleave; material.opacity: .7"></a-mixin>
+
+            <a-mixin id="dissapear-on-end" event-set__1="_event: navigation-start;_target:#checkpoint-1;visible:false"></a-mixin>
+
             <a-asset-item id="dog-model" src="models/dog_lowpoly/dog.obj"></a-asset-item>
             <a-asset-item id="dog-mtl" src="models/dog_lowpoly/dog.mtl"></a-asset-item>
 
@@ -33,8 +39,14 @@
 
         </a-assets>
 
-        <a-entity camera="userHeight: 3" position="-1.634 0 49.260" universal-controls="movementControls: checkpoint" wasd-controls checkpoint-controls="mode: animate">
-            <a-cursor id="cursor" animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150" animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500" event-set__1="_event: mouseenter; color: springgreen" event-set__2="_event: mouseleave; color: black" fuse="true" raycaster="objects: .link"></a-cursor>
+        <a-entity mixin="dissapear-on-end" camera="userHeight: 3" position="-1.634 0 49.260" universal-controls="movementControls: checkpoint" wasd-controls checkpoint-controls="mode: animate">
+            <a-cursor id="cursor" animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150" animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500" event-set__1="_event: mouseenter; color: springgreen" event-set__2="_event: mouseleave; color: black" fuse="true" raycaster="objects: .link">
+                
+              <a-animation begin="click" easing="ease-in" attribute="scale" dur="150"
+                           fill="forwards" from="0.1 0.1 0.1" to="1 1 1"></a-animation>
+              <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" dur="1500"
+                           fill="backwards" from="1 1 1" to="0.1 0.1 0.1"></a-animation>
+            </a-cursor>
         </a-entity>
 
         <a-sky id="background" color="white"></a-sky>
@@ -53,27 +65,26 @@
 
 
         <a-entity position="1 0 1">
-            <a-sphere class="link" material="opacity:0.7" mixin="enlarge-on-focus opacity-on-focus" checkpoint="offset:0 1.6 0" radius="1" position="1.052 1.5 37.979" color="#d31b2d" mixin="enlarge-on-focus opacity-on-focus">
+            <a-sphere id="checkpoint-1" class="link" material="opacity:0.7" checkpoint="offset:0 1.6 0" radius="1" position="3.892 1.5 33.062" color="#d31b2d" mixin="enlarge-on-focus opacity-on-focus green-on-focus dissapear-on-end">
             </a-sphere>
 
-            <a-sphere class="link" material="opacity:0.7" mixin="enlarge-on-focus opacity-on-focus" checkpoint="offset:0 1.6 0" radius="1" position="-4.12 1.5 30.766" color="#d31b2d" mixin="enlarge-on-focus opacity-on-focus">
+            <a-sphere id="checkpoint-2" class="link" material="opacity:0.7" checkpoint="offset:0 1.6 0" radius="1" position="-8.178 1.5 28.525" color="#d31b2d" mixin="enlarge-on-focus opacity-on-focus green-on-focus dissapear-on-end">
             </a-sphere>
 
 
-            <a-sphere class="link" material="opacity:.7" mixin="enlarge-on-focus opacity-on-focus" checkpoint="offset:0 1.6 0" radius="1" position="-2.979 1.5 23.252" color="#d31b2d">
+            <a-sphere id="checkpoint-3" class="link" material="opacity:.7" mixin="enlarge-on-focus opacity-on-focus green-on-focus dissapear-on-end" checkpoint="offset:0 1.6 0" radius="1" position="-2.979 1.5 23.252" color="#d31b2d">
             </a-sphere>
             
-            <a-sphere class="link" material="opacity:.7" mixin="enlarge-on-focus opacity-on-focus" checkpoint="offset:0 1.6 0" radius="1" position="1.228 1.5 14.04" color="#d31b2d">
+            <a-sphere id="checkpoint-4" class="link" material="opacity:.7" mixin="enlarge-on-focus opacity-on-focus green-on-focus dissapear-on-end" checkpoint="offset:0 1.6 0" radius="1" position="1.228 1.5 14.04" color="#d31b2d">
             </a-sphere>
 
-            <a-sphere class="link" material="opacity:.7" mixin="enlarge-on-focus opacity-on-focus" checkpoint="offset:0 1.6 0" radius="1" position="-5.753 1.5 2.41" color="#d31b2d">
+            <a-sphere id="checkpoint-5" class="link" material="opacity:.7" mixin="enlarge-on-focus opacity-on-focus green-on-focus dissapear-on-end" checkpoint="offset:0 1.6 0" radius="1" position="-5.753 1.5 2.41" color="#d31b2d">
             </a-sphere>
         </a-entity>
 
         <a-entity id="shoe-entity" obj-model="mtl:models/sneakers/Sneakers.mtl;obj:models/sneakers/Sneakers.obj" scale="0.01 0.01 0.01" position="-1.823 0 19.587" rotation="0 300 0"></a-entity>
 
-
-       <a-entity id="shoe-text" geometry="primitive:plane" material="color:blue" text="align:center;value:Shoe;width:10" position="3.415 2.6 -9.283">
+        <a-entity id="shoe-text" geometry="primitive:plane" material="color:blue" text="align:center;value:Shoe;width:10" position="-3.651 1.849 20.33">
         </a-entity>
 
         <a-plane rotation="-90 0 0" width="100" height="100" material="src:textures/grass.jpg; repeat:10 10"></a-plane>
@@ -97,7 +108,7 @@
         <a-entity id="cloud-entity" gltf-model="models/cloud.glb" position="-5.522 3.441 -7.309" scale="3 3 3"></a-entity>
 
 
-        <a-entity id="cloud-text" geometry="primitive:plane" material="color:blue" text="align:center;value:Cloud;width:10" position="-7.852 3.441 -32.02">
+        <a-entity id="cloud-text" geometry="primitive:plane" material="color:blue" text="align:center;value:Cloud;width:10" position="-4.958 4.961 -5.599">
         </a-entity>
 
         <a-entity id="dog-entity" scale="0.1 0.1 0.1" obj-model="mtl:models/dog/Dog.mtl;obj:models/dog/Dog.obj" position="7.584 0 27.834" rotation="0 90 0">
@@ -113,7 +124,7 @@
         </a-entity> -->
         <a-entity id="shirt-entity" gltf-model="models/shirt.glb" position="-1.529 2.839 18.363" scale="3.5 3.5 3.5"></a-entity>
 
-        <a-entity id="shirt-text" geometry="primitive:plane" material="color:blue" text="align:center;value:Shirt;width:10" position="-6.354 4.442 -15.924">
+        <a-entity id="shirt-text" geometry="primitive:plane" material="color:blue" text="align:center;value:Shirt;width:10" position="-1.462 4.406 18.148">
         </a-entity>
 
         <!-- <a-entity obj-model="obj:models/parrot/Mesh_Parrot.obj;mtl:models/parrot/Mesh_Parrot.mtl" material="src:models/parrot/Tex_Parrot.png"></a-entity> -->
@@ -130,10 +141,11 @@
     <a-box id="keyboard" keyboard="receiver: receiver; visibility: true;" color="#0288D1" height="1.1" width="1.1" position="0 1.6 -2.224" rotation="0 0 0"> -->
 
 <a-entity id="path">
-    <a-entity position="1.651 0.1 43.104" rotation="-90.01166961505233 -15.469860468532229 0" scale="1.682 15.12 1" geometry="height:0.85;width:1.97;primitive:plane" material="color:#fcff5a"></a-entity>
+    <a-entity position="2.268 0.1 41.451" rotation="-90.01166961505233 -20.626480624709636 0" scale="1.682 15.12 1" geometry="height:1.22;width:1.97;primitive:plane" material="color:#fcff5a"></a-entity>
     
-    <a-entity position="-0.051 0.1 34.565" rotation="-90.01166961505233 36.09634109324186 0" scale="1.682 15.12 1" geometry="height:0.6199999999999999;width:1.97;primitive:plane" material="color:#fcff5a"></a-entity>
-    <a-entity position="-2.087 0.1 28.03" rotation="-90.01166961505233 -11.000789666511807 0" scale="1.682 15.12 1" geometry="height:0.5199999999999998;width:1.97;primitive:plane" material="color:#fcff5a"></a-entity>
+    <a-entity position="-1.343 0.1 32.136" rotation="-90.012 74.943 0" scale="1.682 15.12 1" geometry="height:1.05;width:1.97;primitive:plane" material="color:#fcff5a"></a-entity>
+
+    <a-entity position="-4.426 0.1 27.174" rotation="-90.01166961505233 -50.13380707394703 0" scale="1.682 15.12 1" geometry="height:0.5900000000000001;width:1.97;primitive:plane" material="color:#fcff5a"></a-entity>
 
     <a-entity position="0.405 0.1 19.831" rotation="-90.01166961505233 -21.886987773997447 0" scale="1.682 15.12 1" geometry="primitive:plane;height:0.71;width:1.97" material="color:#fcff5a"></a-entity>
 
