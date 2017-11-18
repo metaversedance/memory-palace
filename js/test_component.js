@@ -1,3 +1,5 @@
+(function(){
+
 AFRAME.registerComponent("memory-test", {
 	testArr: [
 		{engWord:"tree",frWord:"arbre",3D:true,correct:null},
@@ -12,4 +14,7 @@ AFRAME.registerComponent("memory-test", {
 		{engWord:"lightning",frWord:"foudre",3D:true, correct: null}
 	]
 })
+
+
+})()
 
