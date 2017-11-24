@@ -18,11 +18,12 @@ keyboard component by David Nemes http://nmsdvid.com/aframe-keyboard/
 
 
 todo:
--each entity should have a text item 
--each text item should toggle between french/english on click
--user should have 30 seconds until new checkpoint appears
--user should be presented 2D test first 50% of the time
+- DONE: each entity should have a text item 
+- DONE: user should have 30 seconds until new checkpoint appears
+- DONE: experience should start when user is ready
+- experience should start with 2D test 50% of the time
 
--text fonts should use correct french accents
+-all textures should be power of 2
+-user should be presented 2D test first 50% of the time
 
 
