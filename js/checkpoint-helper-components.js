@@ -29,7 +29,7 @@
 			var self = this;
 			this.el.sceneEl.addEventListener(this.data.event, function onEvent(){
 				self.el.parentNode.removeChild(self.el);
-				this.el.sceneEl.removeEventListener(this.data.event,onEvent);
+				self.el.sceneEl.removeEventListener(self.data.event,onEvent);
 			})
 		}
 
@@ -86,6 +86,7 @@
 			}
 		},
 		init: function() {
+			var arrowSigns = ["#arrow-1","#arrow-2","#arrow-3","#arrow-4"]
 
 			var checkpoints = ["#checkpoint-1","#checkpoint-2","#checkpoint-3","#checkpoint-4"];
 			var textEls = ["#tree-text", "#bicycle-text", "#shoe-text", "#tire-text", "#lightning-text"];
@@ -94,18 +95,24 @@
 			var onNavEnd = this.el.sceneEl.addEventListener("navigation-end", function(){
 				//init textEl event
 				if(idx < textEls.length) {
-					var textEl = AFRAME.scenes[0].querySelector(textEls[idx]);
+					var textEl = self.el.sceneEl.querySelector(textEls[idx]);
 					textEl.setAttribute("visible",true)
 				}
 
 
+
 				setTimeout(function(){
-					console.log("idx",idx)
 					//emit checkpoint init event, handled by init-checkpoint
 					if(idx < checkpoints.length) {
 						var checkpoint = AFRAME.scenes[0].querySelector(checkpoints[idx]);
 						self.el.emit("init-checkpoint", checkpoint);
 
+					}
+
+					if(idx < arrowSigns.length) {
+						console.log("arrowSign",arrowSigns[idx])
+						var arrowEl = self.el.sceneEl.querySelector(arrowSigns[idx]);
+						arrowEl.setAttribute("visible",true)
 					}
 					//handle text removal
 					if(idx < textEls.length) {
@@ -131,7 +138,7 @@
 			this.el.sceneEl.addEventListener("3d-palace-start", function onPalaceStart(){
 				self.el.sceneEl.emit("navigation-end");
 				//remove event listener after fired
-				this.el.sceneEl.removeEventListener("3d-palace-start",onPalaceStart)
+				self.el.sceneEl.removeEventListener("3d-palace-start",onPalaceStart)
 			})
 
 
@@ -186,26 +193,55 @@
 		}
 	});
 
-	AFRAME.registerComponent("2d-3d-start-randomizer", {
+	AFRAME.registerComponent("2d-3d-palace-start-randomizer", {
 		init: function() {
-			//https://github.com/Daplie/knuth-shuffle
 
 			var self = this;
-			this.startCoords =[
-				{x:5.485,y:0, z:32.732},
-				{x:0.347, y:0, z:-34.268}
+			// this.startCoords =[
+			// 	{x:5.485,y:3, z:32.732},
+			// 	{x:0.347, y:3, z:-34.268}
+			// ];
+
+			this.startPositions =[
+				{x:5.485,y:3, z:32.732},
+				{x:0.000, y:-20.216, z:-33.172}
 			];
+
+
+			   
 
 			//generate random number between 0 & 1 to randomize start of either 2D/3D mind palace 
 			var firstStop = Math.floor(Math.random() * 2);
+			//keep track of which palace user is on
+			this.palaceNum = 1;
 
-			this.el.setAttribute("position",this.startCoords[firstStop]);
-			//remove coordinate at idx firstStop
-			this.startCoords.splice()
+			this.el.sceneEl.addEventListener("palace-sequence-start", function(){
+				self.el.setAttribute("position",self.startPositions[firstStop]);
+				//remove coordinate at idx firstStop
+				self.startPositions.splice(firstStop,1);
+
+			})
+
+			this.el.sceneEl.addEventListener("move-to-test-position", function(){
+					//moves camera to test start position
+					var testPosition = {x:-0.944, y: -19.350, z:21.852}
+					self.el.setAttribute("position",testPosition)
+
+			})
+
 
 			this.el.sceneEl.addEventListener("palace-sequence-end", function(){
-				//with first coord position removed, startCoords[0] will be the next
-				self.el.setAttribute("position",self.startCoords[0])
+				if(self.placeNum > 2) return;
+				//hackish way keeping track of if user is 2d palace, 3d palace, or test sequence 
+				if(self.palaceNum===2) {
+					self.el.emit("move-to-test-position")
+					return;
+				} 
+				//with first coord position removed, startPositions[0] will be the next position
+				//moves camera to new position
+				self.el.setAttribute("position",self.startPositions[0]);
+				self.palaceNum++;
+
 
 			})
 
@@ -213,7 +249,8 @@
 
 
 		}
-	})
+	});
+
 
 
 

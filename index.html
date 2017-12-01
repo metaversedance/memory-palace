@@ -20,9 +20,11 @@
 
 <body>
 
+
+
 <!--    <a-scene scene-timer-controller>
  -->
-    <a-scene memory-test>
+    <a-scene test-results push-test-results-firebase>
 
         <a-assets>
             <!--         <img id="paris" src="https://cdn.glitch.com/77b325b3-a37f-455d-a8cc-6d6f614c1aa8%2Fparis.jpg?1509055622250"> -->
@@ -53,14 +55,17 @@
 
         </a-assets>
 
-        <a-entity id="3d-start-entity" class="clickable" 
-        position="6.499 3.003 29.022" 
-        emit-on-event="event:click; emit:3d-palace-start" 
-        remove-on-event="event:3d-palace-start"
-        geometry="primitive:plane" material="color:green" text="align:center;value:Start;width:10"></a-entity>
+        <a-entity id="palace-sequence-start-entity"
+         class="clickable" 
+         position="1.787 -18 -17.299" 
+         emit-on-event="event:click;emit:palace-sequence-start" 
+         geometry="primitive:plane;width:3.63" 
+         material="color:green" 
+         text="align:center;value:Start Experiment;width:10"></a-entity>
 
+        <a-entity id="start-cube" position="0 -14.73 -7.821" scale="28.197 28.197 28.197" geometry="" material="side:back;color:black"></a-entity>
 
-        <a-entity 2d-3d-start-randomizer remove-checkpoint  mixin="dissapear-on-end" camera="userHeight: 3" position="5.485 0 32.732" universal-controls="movementControls: checkpoint" wasd-controls checkpoint-controls="mode: animate">
+        <a-entity 2d-3d-palace-start-randomizer remove-checkpoint  mixin="dissapear-on-end" camera="userHeight: 3" position="1.709 -22.350 -14.701"  universal-controls="movementControls: checkpoint" wasd-controls checkpoint-controls="mode: animate">
             <a-cursor id="cursor" animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150" animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500" event-set__1="_event: mouseenter; color: springgreen" event-set__2="_event: mouseleave; color: black" fuse="true" raycaster="objects: .clickable">
                 
               <a-animation begin="click" easing="ease-in" attribute="scale" dur="150"
@@ -70,7 +75,11 @@
             </a-cursor>
         </a-entity>
 
-        <a-sky id="background" color="black"></a-sky>
+
+        <a-entity id="2d-palace-cube" position="0 -14.73 -36.483" scale="28.197 28.197 28.197" geometry="" material="color:black;side:back"></a-entity>
+
+
+        <a-sky id="background" src="textures/sky.jpg"></a-sky>
 
 
         <a-entity id="tower-entity" position="-1.2 -0.35 9.76" gltf-model="#eiffel-tower-model">
@@ -110,7 +119,7 @@
             </a-entity>
         </a-entity> -->
 
-        <a-entity id="2D-textEls" position="0 4.532 -41.307" 2d-palace-controller position="0 4.532 32.668" geometry="height:5;width:10;primitive:plane" material="src:textures/2D-test-pic.jpg"  >
+        <a-entity id="2D-textEls" position="0.000  -20.216 -41.307" 2d-palace-controller position="0 4.532 32.668" geometry="height:5;width:10;primitive:plane" material="src:textures/2D-test-pic.jpg"  >
 
             <a-entity id="2d-start-entity" class="clickable" 
             position="0 0 0.01"
@@ -152,11 +161,39 @@
 
         </a-entity>
 
-        <a-entity id="3D-textEls" 3d-palace-controller>
+<!--         <a-entity id="seperation-wall-1" position="0 49.833 -15.272" geometry="primitive:plane;height:100;width:100" material="color:black;side:double;shader:flat"></a-entity> -->
+        <a-entity id="arrow-1" visible="false" position="10.986 2.157 28.949" rotation="0 0 90">
+            <a-entity position="0 0.391 0" material="color:green" geometry="primitive:plane;height:1.62;width:0.5"></a-entity>
 
+            <a-entity position="0 1.699 0" material="color:green" geometry="primitive:triangle"></a-entity>
+        </a-entity>
+
+        <a-entity id="arrow-2" visible="false" position="-9.183 2.778 25.356" rotation="0 12.60507149287811 -90.01166961505233">
+            <a-entity position="0 0.391 0" material="color:green" geometry="primitive:plane;height:1.62;width:0.5"></a-entity>
+
+            <a-entity position="0 1.699 0" material="color:green" geometry="primitive:triangle"></a-entity>
+        </a-entity>
+
+        <a-entity id="arrow-3" visible="false" position="-2.299 2.778 20.88" rotation="0 28.87707287459349 -90.01166961505233">
+            <a-entity position="0 0.391 0" material="color:green" geometry="primitive:plane;height:1.62;width:0.5"></a-entity>
+
+            <a-entity position="0 1.699 0" material="color:green" geometry="primitive:triangle"></a-entity>
+        </a-entity>
+
+        <a-entity id="arrow-4" visible="false" position="2.916 2.778 10.384" rotation="0 -39.07572162792215 90.01166961505233">
+            <a-entity position="0 0.391 0" material="color:green" geometry="primitive:plane;height:1.62;width:0.5"></a-entity>
+
+            <a-entity position="0 1.699 0" material="color:green" geometry="primitive:triangle"></a-entity>
+        </a-entity>
+
+
+        <a-entity id="3d-start-entity" class="clickable" position="7.342 2.789 29.26" emit-on-event="event:click;emit:3d-palace-start" remove-on-event="event:3d-palace-start" geometry="primitive:plane" material="color:green" text="align:center;value:Start;width:10"></a-entity>
+
+        <a-entity id="3D-textEls" 3d-palace-controller>
+            
             <a-entity id="shoe-text" visible="false" position="-0.679 1.144 20.33">
-                <a-entity geometry="primitive:plane" material="color:blue" text="align:center;value:Shoes;width:10" position="-1.814 0 0"></a-entity>
-                <a-entity geometry="primitive:plane" material="color:blue" text="align:center;value:Chaussure;width:10"></a-entity>
+                <a-entity geometry="width:1.25;primitive:plane" material="color:blue" text="align:center;value:Shoes;width:10" position="-1.814 0 0"></a-entity>
+                <a-entity geometry="width:2.1399999999999997;primitive:plane" material="color:blue" text="align:center;value:Chaussure;width:10"></a-entity>
             </a-entity>
 
            
@@ -166,9 +203,9 @@
             </a-entity>
 
 
-            <a-entity id="lightning-text" visible="false" position="-4.958 4.961 -5.599">
-                <a-entity geometry="primitive:plane" material="color:blue" text="align:center;value:Lightning;width:10" position="-1.095 0 0"></a-entity>
-                <a-entity geometry="primitive:plane" material="color:blue" text="align:center;value:Foudre;width:10" position="0.855 0 0"></a-entity>
+            <a-entity id="lightning-text" visible="false" position="-4.958 3.665 -5.599">
+                <a-entity geometry="width:1.9300000000000002;primitive:plane" material="color:blue" text="align:center;value:Lightning;width:10" position="-1.095 0 0"></a-entity>
+                <a-entity geometry="width:1.41;primitive:plane" material="color:blue" text="align:center;value:Foudre;width:10" position="0.855 0 0"></a-entity>
             </a-entity>
 
         <a-entity id="tree-text" visible="false" position="10.661 2.516 29.407" rotation="0 -34.66 0">
@@ -178,11 +215,37 @@
 
 
             <a-entity id="bicycle-text" visible="false" position="-8.638 2.755 25.868" rotation="0 45.26366581533504 0">
-                <a-entity geometry="primitive:plane" material="color:blue" text="align:center;value:Bicycle;width:10;font:roboto" position="-0.457 0 0"></a-entity>
-                <a-entity geometry="primitive:plane" material="color:blue" text="align:center;value:Velo;shader:msdf;width:10;" position="0.822 0 0"></a-entity>
+                <a-entity geometry="width:1.41;primitive:plane" material="color:blue" text="align:center;value:Bicycle;width:10" position="-0.457 0 0"></a-entity>
+                <a-entity geometry="primitive:plane" material="color:blue" text="align:center;shader:msdf;value:Velo;width:10" position="0.822 0 0"></a-entity>
             </a-entity>
 
         </a-entity>
+        
+
+   <!--      <a-entity id="seperation-wall-2" position="51.039 46.399 0.801" geometry="primitive:plane;height:100;width:100" material="shader:flat;side:double;color:black" rotation="0 90 0"></a-entity> -->
+
+        <a-entity id="test-cube" position="0 -14.73 21.846" scale="28.197 28.197 28.197" geometry="" material="side:back;color:black"></a-entity>
+
+        <a-entity id="test-sequence-start-entity"
+         class="clickable" 
+         position="0 -17.983 16.17" 
+         emit-on-event="event:click;emit:test-start"
+         remove-on-event="event:test-start" 
+         geometry="primitive:plane;width:3.63" 
+         material="color:green" 
+         text="align:center;value:Start Test;width:10"></a-entity>
+
+        <a-entity id="test" test-sequence position="0 -17.983 16.17" geometry="height:4.840000000000001;width:7.35;primitive:plane" material="color:green">
+                <a-entity id="eng-word" geometry="primitive:plane;width:1.41" material="color:blue" text="align:center;value:EngWord;width:10" position="0 1.053 0.05"></a-entity>
+                
+                <a-entity id="fr-word-1" class="clickable" emit-test-answer-selected-onclick geometry="width:1.88;primitive:plane" material="color:blue" text="align:center;value:fr-word-1;width:10" position="-2.221 -1.096 0.05"></a-entity>
+
+                <a-entity id="fr-word-2" class="clickable" emit-test-answer-selected-onclick geometry="primitive:plane;width:1.88" material="color:blue" text="align:center;value:fr-word-2;width:10" position="0 -1.096 0.05"></a-entity>
+
+                <a-entity id="fr-word-3" class="clickable" emit-test-answer-selected-onclick geometry="primitive:plane;width:1.88" material="color:blue" text="align:center;value:fr-word-3;width:10" position="2.404 -1.096 0.05"></a-entity>
+        </a-entity>
+
+<!--         <a-entity id="separation-wall-3" position="-50.382 46.399 0.801" geometry="primitive:plane;height:100;width:100" material="shader:flat;side:double;color:black" rotation="0 90 0"></a-entity> -->
 <!-- 
         <a-entity id="shoe-entity" obj-model="mtl:#shoe-mtl;obj:#shoe-model" scale="0.01 0.01 0.01" position="-1.823 0 19.587" rotation="0 300 0"></a-entity> -->
 
@@ -194,12 +257,6 @@
 
 
        <a-entity id="car-entity" gltf-model="#car-model" position="3.338 0 8.303" rotation="0 45 0"></a-entity>
-
-
-        
-
-
-
 
         <a-entity id="bike-entity" gltf-model="#bike-model" position="-9.161 0.373 25.868" rotation="0 127.19663051904277 0"></a-entity>
 
