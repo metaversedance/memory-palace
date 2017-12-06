@@ -131,7 +131,7 @@ AFRAME.registerComponent("test-sequence",{
 
 
 
-				if(idx < 11) {
+				if(idx < self.testWords.length) {
 
 
 				console.log("testWordIdxArr",self.testWordIdxArr[idx])
@@ -178,7 +178,7 @@ AFRAME.registerComponent("test-sequence",{
 
 		});
 
-		self.el.emit("test-answer-selected")
+		// self.el.emit("test-answer-selected")
 
 
 
