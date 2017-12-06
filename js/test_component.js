@@ -39,6 +39,15 @@ AFRAME.registerComponent("emit-test-answer-selected-onclick",{
 		})
 	}
 })
+//it should render a new word set on initialization
+//on select:
+	//it should communicate english word, selected  french word, correct french word,
+	//it should render a new word set 
+	//
+//each word set should have:
+	// one english word, one correct french word, two incorrect french words
+	//each french word should be unique
+// 
 AFRAME.registerComponent("test-sequence",{
 	init: function() {
 		var self = this;
@@ -105,18 +114,21 @@ AFRAME.registerComponent("test-sequence",{
 		this.el.sceneEl.addEventListener("test-answer-selected", function(e){
 			console.log("idx",idx)
 
-			// if(idx > self.testWords.length + 1) return;
+			if(idx > self.testWords.length + 1) return;
 
 
 			var engWordEl = self.el.querySelector("#eng-word");
 			var frWord1El =  self.el.querySelector("#fr-word-1");
 			var frWord2El =  self.el.querySelector("#fr-word-2");
+			var frWord3El =  self.el.querySelector("#fr-word-3");
+
 			//save last 
 
-			if(idx > 0) {
+			// if(idx > 0) {
 				//save results
 				var selectedWord = e.detail.selectedWord;
-				var lastEngWord =  engWordEl.getAttribute("text").value;
+				// var lastEngWord =  engWordEl.getAttribute("text").value;
+				var lastEngWord =  self.testWords[self.testWordIdxArr[idx]].engWord;
 				var correctWordObj = self.testWordsByEngKeys[lastEngWord];
 				self.el.emit("new-test-result", {
 					testResult: {
@@ -127,7 +139,7 @@ AFRAME.registerComponent("test-sequence",{
 					}
 				})
 
-			}
+			// }
 
 
 
@@ -155,27 +167,18 @@ AFRAME.registerComponent("test-sequence",{
 					value: shuffledWords[1]
 				});
 
-				var frWord3El =  self.el.querySelector("#fr-word-3");
 				frWord3El.setAttribute("text",{
 					value: shuffledWords[2]
 				});
 
-				if(idx === self.testWords.length) {
+				if(idx === self.testWords.length - 1) {
 					self.el.emit("test-end");
+					console.log("test-end")
 
 				}
 
-
-				}
-
-
-
-
-
-
+			}
 			idx++;
-
-
 		});
 
 		// self.el.emit("test-answer-selected")
