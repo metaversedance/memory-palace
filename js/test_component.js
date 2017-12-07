@@ -106,13 +106,12 @@ AFRAME.registerComponent("test-sequence",{
 			self.testWordsByEngKeys[wordObj.engWord] = wordObj;
 		});
 
-		//create randomized array sequence 0-testWords.length to mutate instead of testWords
+		//create randomized array sequence 0-testWords.length to instead useof testWords
 		this.testWordIdxArr = getShuffledIdices(this.testWords.length);
 
 		var idx = 0;
 
 		this.el.sceneEl.addEventListener("test-answer-selected", function(e){
-			console.log("idx",idx)
 
 			if(idx > self.testWords.length + 1) return;
 
@@ -181,22 +180,24 @@ AFRAME.registerComponent("test-sequence",{
 			idx++;
 		});
 
-		// self.el.emit("test-answer-selected")
+		self.el.emit("test-answer-selected")
 
 
 
 	},
 	testWords: [		
-		{engWord:"tree",frWord:"arbre",VR:false,correct:null},
-		{engWord:"dog",frWord:"chien",VR:true, correct: null},
-		{engWord:"bicycle",frWord:"velo",VR:true, correct: null},
-		{engWord:"arch",frWord:"cambre",VR:false, correct: null},
-		{engWord:"shirt",frWord:"chemise",VR:true, correct: null},
-		{engWord:"shoe",frWord:"chaussure",VR:false, correct: null},
-		{engWord:"car",frWord:"voiture",VR:false, correct: null},
-		{engWord:"tire",frWord:"pneu",VR:true, correct: null},
-		{engWord:"cloud",frWord:"nuage",VR:false, correct: null},
-		{engWord:"lightning",frWord:"foudre",VR:true, correct: null}
+		{engWord:"tree",frWord:"arbre",VR:false},
+		{engWord:"bicycle",frWord:"velo",VR:true},
+		{engWord:"arch",frWord:"cambre",VR:false},
+		{engWord:"dog",frWord:"chien",VR:true},
+		{engWord:"arch",frWord:"cambre",VR:false},
+		{engWord:"shirt",frWord:"chemise",VR:true},
+		{engWord:"shoe",frWord:"chaussure",VR:false},
+		{engWord:"tire",frWord:"pneu",VR:true},
+		{engWord:"cloud",frWord:"nuage",VR:false},
+		{engWord:"lightning",frWord:"foudre",VR:true},
+		{engWord:"car",frWord:"voiture",VR:false}
+
 	]
 });
 
@@ -224,24 +225,6 @@ AFRAME.registerComponent("push-test-results-firebase",{
 	}
 });
 
-//   // Initialize Firebase
-//   var config = {
-//     apiKey: "AIzaSyB5F4czc_XZHZXqUdIOH3XYfm_VJWDowTk",
-//     authDomain: "memory-palace-7448e.firebaseapp.com",
-//     databaseURL: "https://memory-palace-7448e.firebaseio.com",
-//     projectId: "memory-palace-7448e",
-//     storageBucket: "memory-palace-7448e.appspot.com",
-//     messagingSenderId: "932775378546"
-//   };
-
-// firebase.initializeApp(config);
-//  var database = firebase.database();
-
-
-// database.ref().push({
-//     device: "PC",
-//     name: "Matt"
-// });
 
 
 })()
