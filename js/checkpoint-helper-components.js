@@ -82,7 +82,7 @@
 	AFRAME.registerComponent("3d-palace-controller",{
 		schema: {
 			"seconds-per-checkpoint": {
-				default: 2
+				default: 8
 			}
 		},
 		init: function() {
@@ -149,7 +149,7 @@
 	AFRAME.registerComponent("2d-palace-controller",{
 		schema: {
 			"seconds-per-checkpoint": {
-				default: 2
+				default: 8
 			}
 		},
 		init: function() {
