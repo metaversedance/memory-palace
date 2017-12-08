@@ -46,3 +46,7 @@ todo:
 		-french words should have random positions
 -User should have informed consent before experience
 
+-user should get percentage correct
+
+-device should be detected
+
