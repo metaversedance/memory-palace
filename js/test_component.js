@@ -233,8 +233,8 @@ AFRAME.registerComponent("percentage-correct-screen",{
 					self.numCorrect2D++;
 				}
 			}
-			var correct2D = (self.numCorrect2D/10) * 100;
-			var correct3D = (self.numCorrect3D/10) * 100;
+			var correct2D = (self.numCorrect2D/5) * 100;
+			var correct3D = (self.numCorrect3D/5) * 100;
 
 			var displayText = "Correct VR Words: " + correct3D + "%"+" Correct 2D Words: " + correct2D + "%";
 			self.el.setAttribute("text",{
