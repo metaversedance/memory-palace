@@ -194,19 +194,10 @@
 		init: function() {
 
 			var self = this;
-			// this.startCoords =[
-			// 	{x:5.485,y:3, z:32.732},
-			// 	{x:0.347, y:3, z:-34.268}
-			// ];
-
 			this.startPositions =[
 				{x:5.485,y:3, z:32.732},
 				{x:0.000, y:-20.216, z:-33.172}
 			];
-
-
-			   
-
 			//generate random number between 0 & 1 to randomize start of either 2D/3D mind palace 
 			var firstStop = Math.floor(Math.random() * 2);
 			//keep track of which palace user is on
@@ -221,7 +212,7 @@
 
 			this.el.sceneEl.addEventListener("move-to-test-position", function(){
 					//moves camera to test start position
-					var testPosition = {x:-0.944, y: -19.350, z:21.852}
+					var testPosition = {x:-0.944, y: -19.350, z:28.529}
 					self.el.setAttribute("position",testPosition)
 
 			})
@@ -259,17 +250,32 @@ AFRAME.registerComponent("test-results", {
 			console.log("new test record added", newTestRecord)
 
 		});
+		this.el.sceneEl.addEventListener("new-user-answer", function(e){
+			var userQuestion = e.detail.userQuestion;
+			var userAnswer = e.detail.userAnswer;
+			self.userQuestions[userQuestion] = userAnswer;
+
+		})
 		//when memory test is finished, communicate results to be pushed to firebase database
 		this.el.sceneEl.addEventListener("test-end",function(){
 			//
 			self.el.emit("push-results-firebase", {
-				testResults: self.testResults
+				testResults: self.testResults,
+				userSurveyResults: self.userQuestions,
+				userEmail: self.userEmail
+
 			});
 
 		});
+		this.el.sceneEl.addEventListener("user-email", function(e){
+			self.userEmail = e.detail.userEmail;
+
+		})
 
 	},
-	testResults: []
+	testResults: [],
+	userQuestions: {},
+	userEmail: null
 });
 AFRAME.registerComponent("emit-test-answer-selected-onclick",{
 	init: function() {
@@ -360,7 +366,8 @@ AFRAME.registerComponent("test-sequence",{
 				})
 
 				if(idx === self.testWords.length - 1) {
-					self.el.emit("test-end");
+					//remove test panel at end of test
+					self.el.parentNode.removeChild(self.el);
 				}
 			idx++;
 			self.renderWords(idx)
@@ -439,9 +446,15 @@ AFRAME.registerComponent("push-test-results-firebase",{
 
 	   this.el.sceneEl.addEventListener("push-results-firebase", function(e){
 	   		var testResults = e.detail.testResults;
+	   		var userSurveyResults = e.detail.userSurveyResults;
+	   		var userEmail = e.detail.userEmail;
 	   		console.log("database-push", testResults)
 
-			self.database.ref().push(testResults);
+			self.database.ref().push({
+				testResults: testResults,
+				userSurveyResults: userSurveyResults,
+				userEmail: userEmail
+			});
 	   		
 
 	   })
@@ -459,7 +472,7 @@ AFRAME.registerComponent("percentage-correct-screen",{
 			var correctWord = testResult.correctFrWord.toLowerCase();
 			var selectedWord = testResult.selectedWord.toLowerCase();
 			if(correctWord===selectedWord) {
-				if(testResult.correctWordObj.VR) {
+				if(testResult.VR) {
 					self.numCorrect3D++;
 				} else {
 					self.numCorrect2D++;
@@ -478,8 +491,63 @@ AFRAME.registerComponent("percentage-correct-screen",{
 })
 
 
-// <a-entity geometry="primitive:plane" material="color:blue" text="align:center;value:Arch;width:10" position="-0.323 0 0">
-// </a-entity>
+AFRAME.registerComponent("user-test-question",{
+	schema: {
+		testQuestion: {
+			type: "string"
+		},
+		isLastQuestion: {
+			default: false
+		}
+	},
+	init: function() {
+		var self = this;
+		var userAnswerEls = this.el.querySelectorAll(".user-answer");
+		//add onclick events to each question
+		userAnswerEls.forEach(function(el){
+			el.addEventListener("click",function(){
+				var userQuestion = self.data.testQuestion;
+				var userAnswer = el.getAttribute("text").value;
+				self.el.emit("new-user-answer",{
+					userAnswer: userAnswer,
+					userQuestion: userQuestion
+				})
+				if(self.data.isLastQuestion) {
+					//if is the last question in experience
+					//communicate that test sequence has ended
+					//which will push results to database
+					self.el.emit("test-end");
+
+				}
+				//remove question panel
+				self.el.parentNode.removeChild(self.el)
+			});
+		})
+	}
+})
+
+AFRAME.registerComponent("user-email",{
+	init: function() {
+		var email = this.getUrlParameterByName("email",window.location.href);
+		this.el.emit("user-email",{
+			userEmail: email
+		});
+
+	},
+	//https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+	 getUrlParameterByName: function(name, url) {
+	    if (!url) url = window.location.href;
+	    name = name.replace(/[\[\]]/g, "\\$&");
+	    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+	        results = regex.exec(url);
+	    if (!results) return null;
+	    if (!results[2]) return '';
+	    return decodeURIComponent(results[2].replace(/\+/g, " "));
+	}
+
+
+
+})
 
 
 
