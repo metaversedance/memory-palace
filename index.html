@@ -24,6 +24,18 @@
 
         <a-assets>
 
+            <img id="arch-test-tex" src="textures/test-pictures/arch-test.jpg">
+            <img id="bike-test-tex" src="textures/test-pictures/bike-test.jpg">
+            <img id="car-test-tex" src="textures/test-pictures/car-test.png">
+            <img id="cloud-test-tex" src="textures/test-pictures/cloud-test.jpg">
+            <img id="dog-test-tex" src="textures/test-pictures/dog-test.jpg">
+            <img id="lightning-test-tex" src="textures/test-pictures/lightning-test.jpg">
+            <img id="shirt-test-tex" src="textures/test-pictures/shirt-test.png">
+            <img id="shoes-test-tex" src="textures/test-pictures/shoes-test.png">
+            <img id="tree-test-tex" src="textures/test-pictures/tree-test.jpg">
+            <img id="tire-test-tex" src="textures/test-pictures/tire-test.jpg">
+
+
             <a-mixin id="animation-scale-fast" animation__scale_fast="property: scale; dir: alternate; dur: 600;easing: easeInSine; loop: true; to: 1.2 1.2 1.2"></a-mixin>
             <img id="sky-tex" src="textures/sky.jpg">
             <a-mixin id="animation-scale-slow" animation__scale_slow="property: scale; dir: alternate; dur: 1500;easing: easeInSine; loop: true; to: 1.2 1.2 1.2">
@@ -49,15 +61,6 @@
             <a-asset-item id="dog-model" src="models/dog/Dog.obj"></a-asset-item>
             <a-asset-item id="dog-mtl" src="models/dog/Dog.mtl"></a-asset-item>
             <a-asset-item id="man-model" src="models/man.glb"></a-asset-item>
-<!--             <a-asset-item id="shirt-model" src="models/shirt.glb"></a-asset-item>
-
-            <a-asset-item id="shoe-model" src="models/sneakers/Sneakers.obj"></a-asset-item>
-            <a-asset-item id="shoe-mtl" src="models/sneakers/Sneakers.mtl"></a-asset-item> -->
-
-
-            <!--             <a-asset-item id="dog-texture" src="models/dog_lowpoly/dog_tex.png"></a-asset-item>
- -->
-
         </a-assets>
 
         <a-entity id="palace-sequence-start-entity"
@@ -227,8 +230,11 @@
          text="align:center;value:Start Test;width:10"></a-entity> -->
 
         <a-entity id="test" test-sequence position="0 -17.983 17.599" geometry="height:4.840000000000001;width:7.35;primitive:plane" material="color:green" scale="1.397 1.397 1.397">
-                <a-entity id="eng-word" geometry="primitive:plane;width:2.000" material="color:blue" text="align:center;value:EngWord;width:10" position="0 1.053 0.05"></a-entity>
-                
+<!--                 <a-entity id="eng-word" geometry="primitive:plane;width:2.000" material="color:blue" text="align:center;value:EngWord;width:10" position="0 1.053 0.05"></a-entity>
+ -->                
+
+                <a-entity id="eng-word" geometry="primitive:plane;width:2;height:2" material=""  position="0 1.053 0.05"></a-entity>
+
                 <a-entity id="fr-word-1" class="clickable" emit-test-answer-selected-onclick geometry="width:2.000;primitive:plane" material="color:blue" text="align:center;value:fr-word-1;width:10" position="-2.221 -1.096 0.05"></a-entity>
 
                 <a-entity id="fr-word-2" class="clickable" emit-test-answer-selected-onclick geometry="primitive:plane;width:2.000" material="color:blue" text="align:center;value:fr-word-2;width:10" position="0 -1.096 0.05"></a-entity>

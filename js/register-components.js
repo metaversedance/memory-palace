@@ -399,9 +399,10 @@ AFRAME.registerComponent("test-sequence",{
 				var incorrectFrWord2 = this.testWords[uniqueWordIdices[1]].frWord;
 				//shuffle so that correct word position will be random
 				var shuffledWords = shuffleArr([correctFrWord, incorrectFrWord1, incorrectFrWord2]);
+				var testTextureSelector =  this.testTexturesByEngKeys[engWord];
 
-				engWordEl.setAttribute("text",{
-					value: engWord
+				engWordEl.setAttribute("material",{
+					src: testTextureSelector
 				})
 				frWord1El.setAttribute("text",{
 					value: shuffledWords[0]
@@ -428,7 +429,19 @@ AFRAME.registerComponent("test-sequence",{
 		{engWord:"lightning",frWord:"foudre",VR:true},
 		{engWord:"car",frWord:"voiture",VR:false}
 
-	]
+	],
+	testTexturesByEngKeys: {
+		"arch":"#arch-test-tex",
+		"bicycle":"#bike-test-tex",
+		"car":"#car-test-tex",
+		"cloud":"#cloud-test-tex",
+		"dog":"#dog-test-tex",
+		"lightning":"#lightning-test-tex",
+		"shirt":"#shirt-test-tex",
+		"shoe":"#shoes-test-tex",
+		"tree":"#tree-test-tex",
+		"tire":"#tire-test-tex"
+	}
 });
 
 AFRAME.registerComponent("push-test-results-firebase",{
@@ -547,9 +560,7 @@ AFRAME.registerComponent("user-email",{
 
 
 
-})
-
-
+});
 
 })()
 
