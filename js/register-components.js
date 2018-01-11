@@ -211,6 +211,7 @@
 			})
 
 			this.el.sceneEl.addEventListener("move-to-test-position", function(){
+					console.log("move-to-test-position")
 					//moves camera to test start position
 					var testPosition = {x:-0.944, y: -19.350, z:28.529}
 					self.el.setAttribute("position",testPosition)
@@ -231,7 +232,9 @@
 				self.palaceNum++;
 
 
-			})
+			});
+
+			this.el.emit("palace-sequence-start");
 
 
 

@@ -62,18 +62,18 @@
             <a-asset-item id="man-model" src="models/man.glb"></a-asset-item>
         </a-assets>
 
-        <a-entity id="palace-sequence-start-entity"
+<!--         <a-entity id="palace-sequence-start-entity"
          mixin="animation-scale-slow green-on-focus"
          class="clickable" 
          position="1.787 -18 -17.299" 
          emit-on-event="event:click;emit:palace-sequence-start" 
          geometry="primitive:plane;width:3.63" 
          material="color:#d31b2d" 
-         text="align:center;value:Start Experiment;width:10"></a-entity>
+         text="align:center;value:Start Experiment;width:10"></a-entity> -->
 
         <a-entity id="start-cube" position="0 -14.73 -7.821" scale="28.197 28.197 28.197" geometry="" material="side:back;color:black"></a-entity>
 
-        <a-entity 2d-3d-palace-start-randomizer remove-checkpoint  mixin="dissapear-on-end" camera="userHeight: 3" position="1.709 -22.350 -14.701"  universal-controls="movementControls: checkpoint" wasd-controls checkpoint-controls="mode: animate">
+        <a-entity 2d-3d-palace-start-randomizer remove-checkpoint  mixin="dissapear-on-end" camera="userHeight: 1.6" position="1.709 -22.350 -14.701"  universal-controls="movementControls: checkpoint" wasd-controls checkpoint-controls="mode: animate">
             <a-cursor id="cursor" animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150" animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500" event-set__1="_event: mouseenter; color: springgreen" event-set__2="_event: mouseleave; color: black" fuse="true" raycaster="objects: .clickable">
                 
               <a-animation begin="click" easing="ease-in" attribute="scale" dur="150"
@@ -111,7 +111,11 @@
             </a-sphere>
         </a-entity>
 
-        <a-entity id="2D-textEls" position="0.000  -20.216 -41.307" 2d-palace-controller position="0 4.532 32.668" geometry="height:5;width:10;primitive:plane" material="src:#2d-test-tex"  >
+        <a-entity id="2D-textEls" position="0.000  -20.216 -41.307" 2d-palace-controller position="0 4.532 32.668" geometry="height:5;width:10;primitive:plane" material="src:#2d-test-tex" >
+
+            <a-entity id="2d-test-signifier" 
+            position="0 3 0.05" 
+            geometry="primitive:plane;width:3" material="color:#d31b2d" text="align:center;value:2D condition;width:10;zOffset:0.050"></a-entity>
 
             <a-entity id="2d-start-entity" class="clickable" 
             mixin="animation-scale-slow green-on-focus"
@@ -219,14 +223,14 @@
 
         <a-entity id="test-cube" position="0 -14.73 21.846" scale="28.197 28.197 28.197" geometry="" material="side:back;color:black"></a-entity>
 
-<!--         <a-entity id="test-sequence-start-entity"
+        <a-entity id="test-sequence-start-entity"
          class="clickable" 
          position="0 -17.983 16.17" 
          emit-on-event="event:click;emit:test-start"
          remove-on-event="event:test-start" 
          geometry="primitive:plane;width:3.63" 
          material="color:green" 
-         text="align:center;value:Start Test;width:10"></a-entity> -->
+         text="align:center;value:Start Test;width:10"></a-entity>
 
         <a-entity id="test" test-sequence position="0 -17.983 17.599" geometry="height:4.840000000000001;width:7.35;primitive:plane" material="color:green" scale="1.691 1.691 1.691">
 <!--                 <a-entity id="eng-word" geometry="primitive:plane;width:2.000" material="color:blue" text="align:center;value:EngWord;width:10" position="0 1.053 0.05"></a-entity>
