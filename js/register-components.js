@@ -260,12 +260,17 @@ AFRAME.registerComponent("test-results", {
 
 		})
 		//when memory test is finished, communicate results to be pushed to firebase database
-		this.el.sceneEl.addEventListener("test-end",function(){
-			//
+		this.el.sceneEl.addEventListener("mocap-recording-finish",function(e){
+			var mocapData =  e.detail.mocapData.camera.poses;
+			var events = e.detail.mocapData.camera.events
+
 			self.el.emit("push-results-firebase", {
 				testResults: self.testResults,
 				userSurveyResults: self.userQuestions,
-				userEmail: self.userEmail
+				userEmail: self.userEmail,
+				mocapData: mocapData,
+				events: events
+
 
 			});
 
@@ -273,6 +278,9 @@ AFRAME.registerComponent("test-results", {
 		this.el.sceneEl.addEventListener("user-email", function(e){
 			self.userEmail = e.detail.userEmail;
 
+		});
+		this.el.sceneEl.addEventListener("mocap-end", function(e){
+			self.mocapData = e.detail.mocapData;
 		})
 
 	},
@@ -461,16 +469,19 @@ AFRAME.registerComponent("push-test-results-firebase",{
 	   this.database = firebase.database();
 
 	   this.el.sceneEl.addEventListener("push-results-firebase", function(e){
-	   		var testResults = e.detail.testResults;
-	   		var userSurveyResults = e.detail.userSurveyResults;
-	   		var userEmail = e.detail.userEmail;
-	   		console.log("database-push", testResults)
+	   		var data = {
+	   			testResults: e.detail.testResults,
+	   			userSurveyResults: e.detail.userSurveyResults,
+	   			userEmail: e.detail.userEmail,
+	   			mocapData: e.detail.mocapData,
+	   			events: e.detail.events
+	   		}
 
-			self.database.ref().push({
-				testResults: testResults,
-				userSurveyResults: userSurveyResults,
-				userEmail: userEmail
-			});
+
+			self.database.ref().push(data);
+
+	   		console.log("database-push", data)
+
 	   		
 
 	   })
@@ -564,6 +575,28 @@ AFRAME.registerComponent("user-email",{
 
 
 });
+
+AFRAME.registerComponent("mocap-save",{
+	init: function() {
+		var self = this;
+		if(this.el.components["avatar-recorder"]) {
+			// prevents onkeyup event toggling mocap recording on avatar-recorder component
+			this.el.components["avatar-recorder"].play = function(){};
+			window.removeEventListener('keydown',this.el.components["avatar-recorder"].onKeyDown);
+		}
+		this.el.components["avatar-recorder"].startRecording();
+
+		this.el.sceneEl.addEventListener("test-end", function() {
+			self.el.components["avatar-recorder"].stopRecording();
+			self.el.emit("mocap-recording-finish", {
+				mocapData: self.el.components["avatar-recorder"].getJSONData()
+			});
+		})
+
+
+	}
+});
+
 
 })()
 

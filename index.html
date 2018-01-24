@@ -6,13 +6,16 @@
     <!-- Origin Trial Token, feature = WebVR (For Chrome M62+), origin = https://metaversedance.github.io, expires = 2018-02-23 -->
     <meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M62+)" data-expires="2018-02-23" content="At5RpjHilau4O0kIy8h13kQABjVJazS8POFZw/pAsvJGzVR0PNlkAgw/PeNj4BrDoUV80f5qFErD6RiutoZhdg8AAABweyJvcmlnaW4iOiJodHRwczovL21ldGF2ZXJzZWRhbmNlLmdpdGh1Yi5pbzo0NDMiLCJmZWF0dXJlIjoiV2ViVlIxLjFNNjIiLCJleHBpcnkiOjE1MTkzNTc0MDUsImlzU3ViZG9tYWluIjp0cnVlfQ==">
 
-    <title>Learn French in Paris - A-Frame</title>
+    <title>Learn French in Paris</title>
     <meta name="description" content="Hello, WebVR! - A-Frame">
     <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
     <script src="https://unpkg.com/aframe-text-geometry-component@^0.5.0/dist/aframe-text-geometry-component.min.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.12.3/dist/aframe-extras.min.js"></script>
   <script src="https://unpkg.com/aframe-animation-component/dist/aframe-animation-component.min.js"></script>
+
+  <script src="https://unpkg.com/aframe-motion-capture-components@0.2.7/dist/aframe-motion-capture-components.js"></script> 
+
 
     <script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
     <script src="js/register-components.js"></script>
@@ -23,7 +26,7 @@
 
 
 
-    <a-scene test-results push-test-results-firebase user-email>
+    <a-scene test-results push-test-results-firebase user-email avatar-recorder="autoPlay:false;autoRecord:true;autoSaveFile:false;visibleStroke:false" mocap-save>
 
         <a-assets>
 
@@ -242,6 +245,7 @@
          material="color:green" 
          text="align:center;value:Start Test;width:10"></a-entity> -->
 
+
         <a-entity id="test" test-sequence position="0 -17.983 17.599" geometry="height:4.840000000000001;width:7.35;primitive:plane" material="color:green" scale="1.691 1.691 1.691">
 <!--                 <a-entity id="eng-word" geometry="primitive:plane;width:2.000" material="color:blue" text="align:center;value:EngWord;width:10" position="0 1.053 0.05"></a-entity>
  -->                
@@ -259,19 +263,19 @@
         <a-entity id="user-VR-preference-question" class="clickable" user-test-question="testQuestion:VR" position="0 -17.983 16.892" geometry="height:4.840000000000001;width:9;primitive:plane" material="color:green">
                 <a-entity class="user-question"  text="value: in which setting would you rather learn more words: ;align:center;width:10;zOffset:0.050" position="0 1.053 0.05"></a-entity>
                 
-                <a-entity class="clickable user-answer" geometry="width:2.000;primitive:plane" material="color:blue" text="align:center;value:2D;width:10;zOffset:0.050" position="-2.221 -1.096 0.05"></a-entity>
+                <a-entity class="clickable user-answer" geometry="width:2.000;primitive:plane" material="color:blue" text="align:center;value:2D;width:10;zOffset:0.050" position="-2.221 -1.096 0.05" mixin="red-on-focus"></a-entity>
 
-                <a-entity  class="clickable user-answer"  geometry="primitive:plane;width:2.000" material="color:blue" text="align:center;value:VR;width:10;zOffset:0.050" position="2.404 -1.096 0.05"></a-entity>
+                <a-entity  class="clickable user-answer"  geometry="primitive:plane;width:2.000" material="color:blue" text="align:center;value:VR;width:10;zOffset:0.050" position="2.404 -1.096 0.05" mixin="red-on-focus"></a-entity>
         </a-entity>
 
         <a-entity id="user-nausea-question" class="clickable" user-test-question="testQuestion:nauseaus;isLastQuestion:true" position="0 -17.983 15.705" geometry="height:4.840000000000001;width:7.35;primitive:plane" material="color:green">
                 <a-entity class="user-question" text="value:How nauseous did you feel?;align:center;width:10;zOffset:0.050" position="0 1.053 0.05"></a-entity>
                 
-                <a-entity  class="clickable user-answer" geometry="width:2.000;primitive:plane" material="color:blue" text="align:center;value:None;width:10;zOffset:0.050" position="-2.221 -1.096 0.05"></a-entity>
+                <a-entity  class="clickable user-answer" geometry="width:2.000;primitive:plane" material="color:blue" text="align:center;value:None;width:10;zOffset:0.050" position="-2.221 -1.096 0.05" mixin="red-on-focus"></a-entity>
 
-                <a-entity  class="clickable user-answer"  geometry="primitive:plane;width:2.000" material="color:blue" text="align:center;value:A little;width:10;zOffset:0.050" position="0 -1.096 0.05"></a-entity>
+                <a-entity  class="clickable user-answer"  geometry="primitive:plane;width:2.000" material="color:blue" text="align:center;value:A little;width:10;zOffset:0.050" position="0 -1.096 0.05" mixin="red-on-focus"></a-entity>
 
-                <a-entity  class="clickable user-answer"  geometry="primitive:plane;width:2.000" material="color:blue" text="align:center;value:A Lot;width:10;zOffset:0.050" position="2.404 -1.096 0.05"></a-entity>
+                <a-entity  class="clickable user-answer"  geometry="primitive:plane;width:2.000" material="color:blue" text="align:center;value:A Lot;width:10;zOffset:0.050" position="2.404 -1.096 0.05" mixin="red-on-focus"></a-entity>
         </a-entity>
         <a-entity id="test-percentage-panel" percentage-correct-screen="" geometry="width:9.7;primitive:plane" material="color:#d31b2d" text="value:Correct VR Words: 20 Correct 2D Words: 20;align:center;width:10;zOffset:0.050" scale="1.268 1.268 1.268" position="0.466 -17.444 15.608"></a-entity>
 
