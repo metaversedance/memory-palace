@@ -11,23 +11,24 @@
     <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
 <!--     <script src="https://unpkg.com/aframe-text-geometry-component@^0.5.0/dist/aframe-text-geometry-component.min.js"></script>
-
-
  -->
+
+
  <script src="js/aframe-text-geometry-component.min.js"></script>
 
 
 
- <!--     <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.12.3/dist/aframe-extras.min.js"></script>
+<!--      <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.12.3/dist/aframe-extras.min.js"></script>
  -->
 
  <script src="js/aframe-extras.min.js"></script>
 
- <!--   <script src="https://unpkg.com/aframe-animation-component/dist/aframe-animation-component.min.js"></script>
+<!--    <script src="https://unpkg.com/aframe-animation-component/dist/aframe-animation-component.min.js"></script>
  -->
 <script src="js/aframe-animation-component.min.js"></script>
 
-  <script src="https://unpkg.com/aframe-motion-capture-components@0.2.7/dist/aframe-motion-capture-components.js"></script> 
+<!--   <script src="https://unpkg.com/aframe-motion-capture-components@0.2.7/dist/aframe-motion-capture-components.js"></script> 
+ --> <script src="js/aframe-motion-capture-components.js"></script>
 
 
     <script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
@@ -55,6 +56,7 @@
             <img id="tire-test-tex" src="textures/memory-test/tire-test.jpg">
 
            <a-mixin id="red-on-focus" event-set__1="_event: mouseenter; material.color:red" event-set__2="_event: mouseleave; material.color:blue"></a-mixin>
+
             <a-mixin id="animation-scale-fast" animation__scale_fast="property: scale; dir: alternate; dur: 600;easing: easeInSine; loop: true; to: 1.2 1.2 1.2"></a-mixin>
             <img id="sky-tex" src="textures/sky.jpg">
             <a-mixin id="animation-scale-slow" animation__scale_slow="property: scale; dir: alternate; dur: 1500;easing: easeInSine; loop: true; to: 1.2 1.2 1.2">
@@ -290,8 +292,19 @@
 
                 <a-entity  class="clickable user-answer"  geometry="primitive:plane;width:2.000" material="color:blue" text="align:center;value:A Lot;width:10;zOffset:0.050" position="2.404 -1.096 0.05" mixin="red-on-focus"></a-entity>
         </a-entity>
-        <a-entity id="test-percentage-panel" percentage-correct-screen="" geometry="width:9.7;primitive:plane" material="color:#d31b2d" text="value:Correct VR Words: 20 Correct 2D Words: 20;align:center;width:10;zOffset:0.050" scale="1.268 1.268 1.268" position="0.466 -17.444 15.608"></a-entity>
+        <a-entity id="test-percentage-panel" percentage-correct-screen="" geometry="width:9.7;primitive:plane" material="color:green" text="value:Correct VR Words: 20 Correct 2D Words: 20;align:center;width:10;zOffset:0.050" scale="1.268 1.268 1.268" position="0.466 -17.444 15.608"></a-entity>
 
+        <a-entity id="share-results-button" 
+                  class="clickable" 
+                  share-results="" 
+                  geometry="width:5.0;primitive:plane" 
+                  material="color:red" 
+                  text="align:center;value:exit VR and share results;width:10;zOffset:0.05" 
+                  position="0 -19.076 15.236"
+                  mixin="animation-scale-slow green-on-focus"
+                  >
+                  
+                </a-entity>
 <!--         <a-entity id="separation-wall-3" position="-50.382 46.399 0.801" geometry="primitive:plane;height:100;width:100" material="shader:flat;side:double;color:black" rotation="0 90 0"></a-entity> -->
 <!-- 
         <a-entity id="shoe-entity" obj-model="mtl:#shoe-mtl;obj:#shoe-model" scale="0.01 0.01 0.01" position="-1.823 0 19.587" rotation="0 300 0"></a-entity> -->

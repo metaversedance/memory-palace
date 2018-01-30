@@ -477,7 +477,10 @@ AFRAME.registerComponent("push-test-results-firebase",{
 	   			events: e.detail.events
 	   		}
 
-
+	   		//prevent database push for testing
+	   		if(location.href.match("devtesting")) {
+	   			return;
+	   		}
 			self.database.ref().push(data);
 
 	   		console.log("database-push", data)
@@ -596,6 +599,40 @@ AFRAME.registerComponent("mocap-save",{
 
 	}
 });
+
+	// englishWord: engWord,
+	// selectedWord: selectedWord,
+	// correctFrWord: correctWordObj.frWord,
+	// VR: correctWordObj.VR
+
+AFRAME.registerComponent("share-results", {
+	init: function() {
+		var self = this;
+
+
+		this.el.addEventListener("click", function() {
+			var testResults = self.el.sceneEl.components["test-results"].testResults;
+			var numCorrect2D = 0;
+			var numCorrectVR = 0;
+			testResults.forEach(function(result){
+
+				var selectedWord = result.selectedWord.toLowerCase();
+				var correctFrWord = result.correctFrWord.toLowerCase();
+				if(result.VR && correctFrWord === selectedWord) {
+					numCorrectVR++;
+				} else if(!result.VR && correctFrWord === selectedWord) {
+					numCorrect2D++;
+				}
+
+			});
+
+			window.location = "http://virtual-bytes.com/results?" 
+			+ "VR=" + numCorrectVR + "&" + "2D=" + numCorrect2D
+
+
+		})
+	}
+})
 
 
 })()
